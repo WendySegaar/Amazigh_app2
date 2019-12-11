@@ -6,4 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteX="0dp"
+        android:adjustViewBounds="true"
+        tools:layout_editor_absoluteY="2dp" />
+
+    <Button
+        android:id="@+id/button_quiz"
+        android:layout_width="345dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginEnd="162dp"
+        android:background="@drawable/button_quiz"
+        android:text="Start Quiz"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.565" />
+
+    <Button
+        android:id="@+id/button_oefenen"
+        android:layout_width="345dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/button_oefenen"
+        android:text="Start Oefening"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.793" />
+
+    <Button
+        android:id="@+id/button_over_ons"
+        android:layout_width="170dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="32dp"
+        android:background="@drawable/button_over_ons"
+        android:text="Over ons"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+
+    <Button
+        android:id="@+id/button_scores"
+        android:layout_width="170dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="208dp"
+        android:background="@drawable/button_scores"
+        android:text="Scores"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
