@@ -6,4 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ScoresActivity">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Je behaalde scores"
+        android:textSize="20sp"/>
+
+    <ListView
+        android:id="@+id/scores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:layout_editor_absoluteX="16dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"></ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
