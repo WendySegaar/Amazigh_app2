@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Kies een categorie"
         android:padding="10dp"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
