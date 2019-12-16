@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         button_quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCategories(true);
+                openCategories("quiz");
             }
         });
 
@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         button_oefenen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCategories(false);
+                openCategories("oefenen");
             }
         });
 
@@ -51,9 +51,9 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void openCategories(Boolean bool) {
+    public void openCategories(String pagina) {
         Intent intent = new Intent(this, CategorieActivity.class);
-        intent.putExtra("redirect", bool);
+        intent.putExtra("pagina", pagina);
         startActivity(intent);
     }
 
