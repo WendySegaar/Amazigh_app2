@@ -53,7 +53,7 @@ public class CategorieActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
 
-        CustomAdaptor customAdapter = new CustomAdaptor();
+        CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
     }
 
@@ -68,10 +68,9 @@ public class CategorieActivity extends AppCompatActivity {
             intent.putExtra("categorie", categorie);
             startActivity(intent);
         }
-
     }
 
-    class CustomAdaptor extends BaseAdapter {
+    class CustomAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {

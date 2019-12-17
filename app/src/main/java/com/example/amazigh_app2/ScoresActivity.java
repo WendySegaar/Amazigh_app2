@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -68,11 +67,11 @@ public class ScoresActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.scores);
 
-        CustomAdaptor customAdapter = new CustomAdaptor();
+        CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
     }
 
-    class CustomAdaptor extends BaseAdapter {
+    class CustomAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
