@@ -28,6 +28,7 @@ public class QuizActivity extends AppCompatActivity {
     private String imageName;
     private Integer pogingen = 3;
     private Random r = new Random();
+    static int score = 0;
 
     int[] dummie_images = {
             R.drawable.dieren01_ezel,
@@ -118,6 +119,8 @@ public class QuizActivity extends AppCompatActivity {
             count = bundle.getInt("count");
             if (count == 14) {
                 intent = new Intent(this, UitslagActivity.class);
+                intent.putExtra("score", score);
+                intent.putExtra("aantal", dummie_images.length);
                 startActivity(intent);
             } else {
                 count++;
@@ -188,6 +191,8 @@ public class QuizActivity extends AppCompatActivity {
                     String name = nameView.getText().toString();
                     if (name.equals(imageName) ) {
                         geraden(view);
+                    } else {
+                        fout(view);
                     }
 
                 }
@@ -198,19 +203,26 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void geraden(View view) {
+        score = score + pogingen;
         Intent intent = new Intent(this, QuizActivity.class);
         intent.putExtra("count", count);
         intent.putExtra("categorie", categorie);
         startActivity(intent);
     }
 
-//    public void fout() {
-//        pogingen--;
-//        if (pogingen == 0){
-//            //zet limiet
-//        } else {
-//
-//        }
-//    }
+    public void fout(View view) {
+        pogingen--;
+        ImageView pogingenView = (ImageView) findViewById(R.id.pogingenImage);
+        if (pogingen == 0){
+            pogingenView.setImageResource(R.drawable.helaas);
+            geraden(view);
+        }
+        if (pogingen == 2) {
+            pogingenView.setImageResource(R.drawable.pogingen2);
+        }
+        if (pogingen == 1) {
+            pogingenView.setImageResource(R.drawable.poging1);
+        }
+    }
 }
 
