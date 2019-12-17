@@ -9,12 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UitslagActivity"
+            android:parentActivityName=".HomeActivity" ></activity>
         <activity
             android:name=".QuizActivity"
-            android:parentActivityName=".CategorieActivity"></activity>
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".OefenenActivity"
-            android:parentActivityName=".CategorieActivity" />
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".ScoresActivity"
             android:parentActivityName=".HomeActivity" />
@@ -24,11 +26,11 @@
         <activity
             android:name=".CategorieActivity"
             android:parentActivityName=".HomeActivity" />
-
-        <activity android:name=".HomeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
