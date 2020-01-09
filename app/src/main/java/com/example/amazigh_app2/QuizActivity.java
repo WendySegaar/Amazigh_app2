@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,15 +21,20 @@ import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
+    private MediaPlayer player;
+
     private GridView gridView;
     private Integer count;
     private String categorie;
     private ArrayList<Integer> images = new ArrayList<Integer>(6);
     private int[] images_keys = new int[6];
     private String imageName;
+    private int sound;
     private Integer pogingen = 3;
     private Random r = new Random();
     static int score = 0;
+    Handler handler = new Handler();
+    final static int DELAY = 1000;
 
     int[] dummie_images = {
             R.drawable.dieren01_ezel,
@@ -46,6 +52,23 @@ public class QuizActivity extends AppCompatActivity {
             R.drawable.dieren01_vis,
             R.drawable.dieren01_kikker,
             R.drawable.dieren01_jakhals,
+    };
+
+    int[] dummie_sounds = {
+            R.raw.dieren01_ezel,
+            R.raw.dieren01_paard,
+            R.raw.dieren01_schaap,
+            R.raw.dieren01_geit,
+            R.raw.dieren01_kip,
+            R.raw.dieren01_konijn,
+            R.raw.dieren01_koe,
+            R.raw.dieren01_hond,
+            R.raw.dieren01_vogel,
+            R.raw.dieren01_kat,
+            R.raw.dieren01_muis,
+            R.raw.dieren01_egel,
+            R.raw.dieren01_kikker,
+            R.raw.dieren01_jakhals,
     };
 
     String[] names = {
@@ -88,10 +111,9 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        getSupportActionBar().setTitle("Quiz");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#5ace20")));
+
+        getSupportActionBar().hide();
+
         setCategorieNaam();
 
         setAmazighWord();
@@ -101,14 +123,30 @@ public class QuizActivity extends AppCompatActivity {
 
         CustomAdapter customAdapter = new CustomAdapter(this);
         gridView.setAdapter(customAdapter);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                play();
+            }
+        }, DELAY);
+
+        ImageButton button = findViewById(R.id.sound);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                play();
+            }
+        });
     }
 
     public void setCategorieNaam() {
         Bundle bundle = getIntent().getExtras();
         categorie = bundle.getString("categorie");
 
-        TextView categorieTV = (TextView) findViewById(R.id.categorieNaam);
-        categorieTV.setText(categorie);
+        TextView categorieView = findViewById(R.id.categorieView);
+        categorieView.setText(categorie);
+        getSupportActionBar().setTitle(categorie);
     }
 
     public void setAmazighWord() {
@@ -128,11 +166,12 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             count = 0;
         }
+
         AmazighWord.setText(amazigh[count]);
+        sound = (dummie_sounds[count]);
     }
 
     public void setImages() {
-
         int i = 0;
         while (i < 6) {
             Integer randomIndex = r.nextInt(14);
@@ -154,6 +193,7 @@ public class QuizActivity extends AppCompatActivity {
 
         private Context mContext;
         private LayoutInflater inflater;
+
         public CustomAdapter(Context c) {
             mContext = c;
         }
@@ -189,7 +229,7 @@ public class QuizActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     TextView nameView = view.findViewById(R.id.name);
                     String name = nameView.getText().toString();
-                    if (name.equals(imageName) ) {
+                    if (name.equals(imageName)) {
                         geraden(view);
                     } else {
                         fout(view);
@@ -213,7 +253,7 @@ public class QuizActivity extends AppCompatActivity {
     public void fout(View view) {
         pogingen--;
         ImageView pogingenView = (ImageView) findViewById(R.id.pogingenImage);
-        if (pogingen == 0){
+        if (pogingen == 0) {
             pogingenView.setImageResource(R.drawable.helaas);
             geraden(view);
         }
@@ -223,6 +263,32 @@ public class QuizActivity extends AppCompatActivity {
         if (pogingen == 1) {
             pogingenView.setImageResource(R.drawable.poging1);
         }
+    }
+
+    public void play() {
+        if (player == null) {
+            player = MediaPlayer.create(this, sound);
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    stopPlayer();
+                }
+            });
+            player.start();
+        }
+    }
+
+    public void stopPlayer() {
+        if (player != null) {
+            player.release();
+            player = null;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopPlayer();
     }
 }
 

@@ -6,57 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".QuizActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dip"
+        android:height="48dip"
+        android:padding="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorGreen"
+            android:orientation="horizontal"
+            android:padding="0dp"
+            tools:layout_editor_absoluteY="4dp">
+
+            <TextView
+                android:id="@+id/categorieView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6.5dp"
+                android:paddingStart="20dp"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/pogingenImage"
+                android:layout_width="137dp"
+                android:layout_height="48dip"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:padding="8dp"
+                app:srcCompat="@drawable/pogingen3" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="15dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="60dp">
-
-            <TextView
-                android:id="@+id/categorieNaam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="TextView"
-                android:textSize="20sp"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp" />
-
-            <TextView
-                android:id="@+id/AmazighWord"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="AmazighWord"
-                android:textSize="25sp"
-                app:layout_constraintTop_toBottomOf="@+id/categorieNaam"
-                tools:layout_editor_absoluteX="0dp" />
-        </LinearLayout>
+        android:paddingLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:layout_editor_absoluteX="16dp">
 
         <TextView
+            android:id="@+id/AmazighWord"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:text="Pogingen:"
-            android:textSize="25sp" />
+            android:layout_height="wrap_content"
+            android:paddingStart="40dp"
+            android:layout_marginTop="12dp"
+            android:paddingRight="50dp"
+            android:text="AmazighWord"
+            android:textSize="36sp"
+            />
 
-        <ImageView
-            android:id="@+id/pogingenImage"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:paddingLeft="10dp"
-            android:src="@drawable/pogingen3" />
+        <ImageButton
+            android:id="@+id/sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@android:color/transparent"
+            android:tint="@android:color/black"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
     </LinearLayout>
-
 
     <GridView
         android:id="@+id/gridview"
