@@ -13,8 +13,9 @@
             android:name=".UitslagActivity"
             android:parentActivityName=".HomeActivity" />
         <activity
-            android:name=".QuizActivity"
-            android:parentActivityName=".HomeActivity" />
+            android:name=".QuizActivity" />
+        <activity
+            android:name=".QuizWordActivity" />
         <activity
             android:name=".OefenenActivity"
             android:parentActivityName=".HomeActivity" />
