@@ -1,9 +1,12 @@
 package com.example.amazigh_app2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -127,7 +130,7 @@ public class QuizActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                play();
+                play(sound);
             }
         }, DELAY);
 
@@ -135,7 +138,7 @@ public class QuizActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                play();
+                play(sound);
             }
         });
     }
@@ -166,7 +169,6 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             count = 0;
         }
-
         AmazighWord.setText(amazigh[count]);
         sound = (dummie_sounds[count]);
     }
@@ -244,14 +246,26 @@ public class QuizActivity extends AppCompatActivity {
 
     public void geraden(View view) {
         score = score + pogingen;
+
+        if(pogingen != 0) {
+            play(R.raw.success_sound_effect);
+        }
         Intent intent = new Intent(this, QuizActivity.class);
         intent.putExtra("count", count);
         intent.putExtra("categorie", categorie);
         startActivity(intent);
+
+        Intent intentQuizWord = new Intent(this, QuizWordActivity.class);
+        intentQuizWord.putExtra("amazigh", amazigh[count]);
+        intentQuizWord.putExtra("vertaling", imageName);
+        intentQuizWord.putExtra("image", dummie_images[count]);
+        intentQuizWord.putExtra("pogingen", pogingen);
+        startActivity(intentQuizWord);
     }
 
     public void fout(View view) {
         pogingen--;
+        play(R.raw.failure_sound_effect);
         ImageView pogingenView = (ImageView) findViewById(R.id.pogingenImage);
         if (pogingen == 0) {
             pogingenView.setImageResource(R.drawable.helaas);
@@ -265,7 +279,7 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    public void play() {
+    public void play(int sound) {
         if (player == null) {
             player = MediaPlayer.create(this, sound);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
