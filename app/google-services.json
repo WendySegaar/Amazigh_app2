@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "193493036935",
+    "firebase_url": "https://roelandroeland-26fe0.firebaseio.com",
+    "project_id": "roelandroeland-26fe0",
+    "storage_bucket": "roelandroeland-26fe0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193493036935:android:e24e0e3e004ccb942b2d22",
+        "android_client_info": {
+          "package_name": "com.example.amazigh_app2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193493036935-9a6b8tddubn30d9rbqf7tqvvgc7i3lv0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKByuE195DEcZpPP7AzzMtLIsuZcoitSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193493036935-9a6b8tddubn30d9rbqf7tqvvgc7i3lv0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
