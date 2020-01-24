@@ -10,14 +10,11 @@ import android.os.Bundle;
 //database
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+
 
 public class OverOnsActivity extends AppCompatActivity {
 
     SQLiteHelper projectDB;
-    EditText editText_Categorie, editText_Afbeelding, editText_Sound;
-    Button btnAddData;
     Button btnViewData;
 
 
@@ -31,9 +28,9 @@ public class OverOnsActivity extends AppCompatActivity {
                 new ColorDrawable(Color.parseColor("#FFEA2B")));
 
 
-        btnViewData = (Button)findViewById(R.id.button_viewData);
 
         //database
+        btnViewData = (Button)findViewById(R.id.button_viewData);
         projectDB = new SQLiteHelper(this);
         viewAll();
 
