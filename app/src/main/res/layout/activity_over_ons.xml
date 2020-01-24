@@ -17,45 +17,14 @@
         app:srcCompat="@drawable/team"
         tools:layout_editor_absoluteX="0dp" />
 
-    <EditText
-        android:id="@+id/editText_Categorie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Categorie"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <EditText
-        android:id="@+id/editText_Afbeelding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Afbeelding"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText_Categorie" />
-
-    <EditText
-        android:id="@+id/editText_Sound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Sound"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Afbeelding" />
 
     <Button
-        android:id="@+id/button_addData"
+        android:id="@+id/button_viewData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="125dp"
-        android:text="Add Data"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText_Sound" />
+        android:layout_marginTop="127dp"
+        android:text="View Data"
+ />
 
 
     <!--    <TextView-->

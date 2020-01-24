@@ -2,13 +2,14 @@ package com.example.amazigh_app2;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "ProjectDB";
+    public static final String DATABASE_NAME = "Project.DB";
     public static final String TABLE_NAME = "Categorien";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "CATEGORIE";
@@ -29,19 +30,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME);
         onCreate(db);
     }
-    public boolean insertDate(String categorie, String afbeelding, String sound){
-        SQLiteDatabase db = this.getReadableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2,categorie);
-        contentValues.put(COL_3,afbeelding);
-        contentValues.put(COL_4,sound);
-        long result = db.insert(TABLE_NAME, null, contentValues);
-        if (result == -1)
-            return false;
-        else
-            return true;
 
 
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
+        return res;
     }
 
 

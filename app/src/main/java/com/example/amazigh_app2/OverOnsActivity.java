@@ -1,7 +1,9 @@
 package com.example.amazigh_app2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ public class OverOnsActivity extends AppCompatActivity {
     SQLiteHelper projectDB;
     EditText editText_Categorie, editText_Afbeelding, editText_Sound;
     Button btnAddData;
+    Button btnViewData;
 
 
     @Override
@@ -27,34 +30,47 @@ public class OverOnsActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.parseColor("#FFEA2B")));
 
-        editText_Categorie = (EditText)findViewById(R.id.editText_Categorie);
-        editText_Afbeelding = (EditText)findViewById(R.id.editText_Afbeelding);
-        editText_Sound = (EditText)findViewById(R.id.editText_Sound);
-        btnAddData = (Button)findViewById(R.id.button_addData);
+
+        btnViewData = (Button)findViewById(R.id.button_viewData);
+
         //database
         projectDB = new SQLiteHelper(this);
-        AddData();
-//        Cursor resultSet = ProjectDatabase.rawQuery("Select * from TutorialsPoint",null);
-//        resultSet.ProjectDatabase();
-//        String username = resultSet.getString(0);
-//        String password = resultSet.getString(1);
+        viewAll();
+
     }
 
-    public void AddData() {
-        btnAddData.setOnClickListener(
+    public void viewAll() {
+        btnViewData.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted = projectDB.insertDate(editText_Categorie.getText().toString(),
-                                editText_Afbeelding.getText().toString(),
-                                editText_Sound.getText().toString() );
-                        if (isInserted =true)
-                            Toast.makeText(OverOnsActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(OverOnsActivity.this, "Data is not Inserted", Toast.LENGTH_LONG).show();
+                        Cursor res = projectDB.getAllData();
+                        if(res.getCount() == 0) {
+                            // show message
+                            showMessage("Error","Nothing found");
+                            return;
+                        }
 
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append("Id :"+ res.getString(0)+"\n");
+                            buffer.append("Categorie :"+ res.getString(1)+"\n");
+                            buffer.append("Afbeelding :"+ res.getString(2)+"\n");
+                            buffer.append("Sound :"+ res.getString(3)+"\n\n");
+                        }
+
+                        // Show all data
+                        showMessage("Data",buffer.toString());
                     }
                 }
         );
+    }
+
+    public void showMessage(String title,String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
     }
 }
